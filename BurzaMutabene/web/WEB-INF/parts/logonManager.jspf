@@ -1,0 +1,12 @@
+<%-- any content can be specified here e.g.: --%>
+<%@page import="java.security.Principal"%>
+<%@page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@ page pageEncoding="UTF-8" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
+<security:authorize ifNotGranted="ROLE_USER">
+[&nbsp;<a href="<spring:url value="/login.htm"/>">Přihlásit se</a>&nbsp;]
+</security:authorize>
+<security:authorize ifAnyGranted="ROLE_USER">
+    Vítejte <security:authentication property="principal.username"/>!&nbsp;[&nbsp;<a href="<spring:url value="/logout.htm" />">Odhlásit se</a>&nbsp;]
+</security:authorize>    

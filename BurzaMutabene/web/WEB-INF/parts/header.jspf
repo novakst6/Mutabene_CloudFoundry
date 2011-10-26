@@ -1,0 +1,39 @@
+<!DOCTYPE html
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+        <%@ page pageEncoding="UTF-8" %>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Language" content="cs" />
+        <meta name="author" content="fuchsane&amp;novakst6;"/>
+        <meta name="description" content="mutabene" />      
+        <link rel="stylesheet" href="<spring:theme code="stylesheet"/>" type="text/css"/>
+        <title>Mutabene Burza</title>
+    </head>
+    <body>
+        <div class="page">
+        <div class="msgerr">${msgerr}</div>
+        <div class="msgcon">${msgcon}</div>
+<div id="header">
+            <div id="title">
+                <h1 class="style1">MUTABENE</h1>
+            </div>
+            <div id="logindisplay">
+                <%@include file="logonManager.jspf" %>
+                <!-- include login particular view -->
+            </div> 
+            
+            <div id="menucontainer">
+            
+                <ul id="menu">              
+                    <li><a href="<spring:url value="/index.htm"/>">Domů</a></li>
+                    <li><a href="<spring:url value="/register.htm"/>">Registrace</a></li>
+                    <li><a href="<spring:url value="/login.htm"/>">Přihlášení</a></li>
+                    <li><a href="<spring:url value="/logout.htm"/>">Odhlášení</a></li>
+                    <li><a href="<spring:url value="/about.htm"/>">O nás</a></li>
+                </ul>       
+            </div>
+        </div>
+<div id="main">
