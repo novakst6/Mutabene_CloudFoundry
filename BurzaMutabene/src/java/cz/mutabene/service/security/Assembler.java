@@ -25,7 +25,7 @@ public class Assembler {
     @Transactional(readOnly = true)
     User buildUserFromUserEntity(UserEntity userEntity){
         System.out.println("buildUserFromUserEntity");
-    String username = userEntity.getLogin();
+    String username = userEntity.getEmail();
     String password = userEntity.getPassword();
     boolean enabled = true;
     boolean accountNonExpired = true;
@@ -40,7 +40,7 @@ public class Assembler {
     }
     for(UserRoleEntity role: roles){
         authorities.add(new GrantedAuthorityImpl(role.getName()));
-        System.out.println(userEntity.getLogin()+" "+role.getName());
+        //System.out.println(userEntity.getLogin()+" "+role.getName());
     }
     
     User user = new User(username, password, enabled, accountNonExpired, accountNonExpired, accoountNonLocked, authorities);

@@ -9,7 +9,7 @@
         Přidání nové uživatelské role:
     </p>
     <div>
-        <f:form action="/admin/userRole/submit.htm" commandName="formModel" method="post">
+        <f:form action="submit.htm" commandName="formModel" method="post">
         <fieldset>
             <legend>Formulář pro přidání</legend>
             <div class="editor-label">Název role</div>

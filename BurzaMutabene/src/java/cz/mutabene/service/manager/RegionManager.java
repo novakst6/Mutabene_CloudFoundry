@@ -7,7 +7,6 @@ package cz.mutabene.service.manager;
 import cz.mutabene.model.entity.RegionEntity;
 import java.util.Collection;
 import java.util.List;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 /**

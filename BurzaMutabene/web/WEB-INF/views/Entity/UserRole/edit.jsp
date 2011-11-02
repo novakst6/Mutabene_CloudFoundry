@@ -8,7 +8,7 @@
         Editace uživatelské role:
     </p>
     <div>
-        <f:form action="/admin/userRole/save.htm" commandName="formModel" method="post">
+        <f:form action="save.htm" commandName="formModel" method="post">
         <fieldset>
             <legend>Formulář pro editaci role ${formModel.id}</legend>
             <div class="editor-label">Název role</div>

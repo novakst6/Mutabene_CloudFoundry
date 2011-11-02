@@ -31,9 +31,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     public UserDetails loadUserByUsername(String string) throws UsernameNotFoundException, DataAccessException {
        
             //UserDetails userDetails = null;
-            UserEntity user = userManager.findByLogin(string);
+            UserEntity user = userManager.findByEmail(string);
             try{
-                System.out.println("Found: "+user.getLogin());
+                System.out.println("Found: "+user.getEmail());
             } catch(Exception e){
                 System.out.println("Not found. "+string);
             }

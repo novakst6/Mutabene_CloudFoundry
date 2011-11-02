@@ -68,6 +68,15 @@
                 <value>cz.mutabene.model.entity.ArticleEntity</value>
                 <value>cz.mutabene.model.entity.ArticleCategoryEntity</value>
                 <value>cz.mutabene.model.entity.ArticleCommentEntity</value>
+                
+                <value>cz.mutabene.model.entity.OfferObjectCategory</value>
+                <value>cz.mutabene.model.entity.OfferOtherObjectEntity</value>
+                <value>cz.mutabene.model.entity.OfferOtherObjectCategory</value>
+                <value>cz.mutabene.model.entity.OfferObjectEntity</value>
+                
+                
+                
+                
             </list>
         </property>
         <property name="hibernateProperties">

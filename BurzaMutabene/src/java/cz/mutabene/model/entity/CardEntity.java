@@ -5,12 +5,11 @@
 
 package cz.mutabene.model.entity;
 
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -19,41 +18,15 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="CARDS")
-public class CardEntity implements Serializable {
+public class CardEntity extends OfferObjectEntity {
     private Long id;
     private String name;
     private String description;
     private String serialNumber;
     private int price;
+    private CardCategoryEntity cardCategoryEntity;
+    private byte[] picture;
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CARD_ID")
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Column(name = "DESCRIPTION")
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Column(name = "NAME")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     @Column(name = "SERIAL_NUMBER")
     public String getSerialNumber() {
@@ -72,4 +45,23 @@ public class CardEntity implements Serializable {
         this.price = price;
     }
 
+    @ManyToOne @PrimaryKeyJoinColumn
+    public CardCategoryEntity getCardCategoryEntity() {
+        return cardCategoryEntity;
+    }
+
+    public void setCardCategoryEntity(CardCategoryEntity cardCategoryEntity) {
+        this.cardCategoryEntity = cardCategoryEntity;
+    }
+
+    @Lob @Column(length= 102485)
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
+    
+    
 }

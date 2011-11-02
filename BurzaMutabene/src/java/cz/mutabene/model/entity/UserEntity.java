@@ -34,7 +34,7 @@ public class UserEntity implements Serializable {
     private Long id;
     private String firstname;
     private String surname;
-    private String login;
+    //private String login;
     private String password;
     private GenderEntity gender;
     private String email;
@@ -79,14 +79,14 @@ public class UserEntity implements Serializable {
         this.password = password;
     }
 
-    @Column(name= "U_LOGIN")
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
+//    @Column(name= "U_LOGIN")
+//    public String getLogin() {
+//        return login;
+//    }
+//
+//    public void setLogin(String login) {
+//        this.login = login;
+//    }
 
     @Column(name = "U_EMAIL")
     public String getEmail() {
@@ -114,7 +114,7 @@ public class UserEntity implements Serializable {
     }
 
     //@Column(name = "ROLE_IT_ID")
-    @ManyToMany(cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+    @ManyToMany(fetch= FetchType.EAGER)
     @JoinTable(name = "USER_ROLES_IT", joinColumns = {@JoinColumn(name = "USER_ID")}, inverseJoinColumns={@JoinColumn(name = "ROLE_IT_ID")})
     public Set<UserRoleEntity> getRoleIT() {
         return roleIT;

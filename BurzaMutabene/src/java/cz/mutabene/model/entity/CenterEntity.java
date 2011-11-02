@@ -6,6 +6,7 @@
 package cz.mutabene.model.entity;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,7 +57,7 @@ public class CenterEntity implements Serializable {
     }
 
     //@Column(name = "ADDRESS_ID")
-    @ManyToOne @PrimaryKeyJoinColumn
+    @ManyToOne(cascade= CascadeType.ALL) @PrimaryKeyJoinColumn
     public AddressEntity getAddress() {
         return address;
     }

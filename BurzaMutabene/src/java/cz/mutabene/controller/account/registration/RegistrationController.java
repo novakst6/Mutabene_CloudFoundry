@@ -95,7 +95,7 @@ public class RegistrationController {
         addressManager.add(address);
         user.setAddress(address);
         user.setCenter(center);
-        user.setLogin(user.getLogin().toLowerCase());
+        //user.setLogin(user.getLogin().toLowerCase());
         if("MALE".equals(regModel.getGender())){
             user.setGender(GenderEntity.MALE);
         } else {

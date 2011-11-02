@@ -4,17 +4,13 @@
  */
 package cz.mutabene.controller.entity;
 
-import cz.mutabene.controller.entity.forms.RegionModel;
+import cz.mutabene.model.forms.entity.RegionModel;
 import cz.mutabene.controller.entity.interfaces.IEntityController;
 import cz.mutabene.model.entity.RegionEntity;
 import cz.mutabene.service.manager.RegionManager;
-import java.io.File;
-import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -95,18 +91,15 @@ public class RegionController implements IEntityController<RegionModel, Long, Mo
         boolean isSingle = true; 
         Collection<RegionEntity> allRegions = regionManager.findAll();
         RegionEntity toDelete = regionManager.findById(id);
-        if(toDelete != null){
-            for(RegionEntity r: allRegions){
                 
-                if(r != null && r.getRegion() != null){
-                    
-                    if(id.equals(r.getRegion().getId())){ 
+        if(toDelete != null){
+            for(RegionEntity r: allRegions){               
+                if(r != null && r.getRegion() != null){                  
+                    if(id.equals(r.getRegion().getId())){
                         isSingle = false;
-
                     }
                 }
             }
-
         }
         if(isSingle){
 
@@ -129,7 +122,7 @@ public class RegionController implements IEntityController<RegionModel, Long, Mo
             RegionEntity parent = regionManager.findById(id);
             region.setRegion(parent);
         } catch (Exception e){
-            region.setRegion(null);
+            region.setRegion(region);
         }
         System.out.println(region.getName()+region.getRegion());
         regionManager.add(region);
@@ -155,7 +148,7 @@ public class RegionController implements IEntityController<RegionModel, Long, Mo
             parent = regionManager.findById(idParent);
             regionOrig.setRegion(parent);
         } catch (Exception e){
-            regionOrig.setRegion(null);
+            regionOrig.setRegion(regionOrig);
         }
             regionManager.update(regionOrig); //TODO pridat validator
             Collection<RegionEntity> allRegions = regionManager.findAll();

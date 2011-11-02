@@ -31,7 +31,7 @@ public class OfferEntity implements Serializable {
     private UserEntity user;
     private OfferTypeEntity offerType;
     private OfferStateEntity offerState;
-    private CardEntity card;
+    private OfferObjectEntity offerObject;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,13 +73,14 @@ public class OfferEntity implements Serializable {
 
     //@Column(name = "CARD_ID")
     @ManyToOne @PrimaryKeyJoinColumn
-    public CardEntity getCard() {
-        return card;
+    public OfferObjectEntity getOfferObject() {
+        return offerObject;
     }
 
-    public void setCard(CardEntity card) {
-        this.card = card;
+    public void setOfferObject(OfferObjectEntity offerObject) {
+        this.offerObject = offerObject;
     }
+
 
     //@Column(name = "OFFER_STATE_ID")
     @ManyToOne @PrimaryKeyJoinColumn

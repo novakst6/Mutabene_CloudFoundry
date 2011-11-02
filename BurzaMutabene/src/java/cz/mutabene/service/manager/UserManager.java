@@ -4,6 +4,7 @@
  */
 package cz.mutabene.service.manager;
 
+import cz.mutabene.model.entity.GenderEntity;
 import cz.mutabene.model.entity.UserEntity;
 import java.util.Collection;
 import java.util.List;
@@ -21,7 +22,7 @@ public class UserManager extends GenericDataManager<UserEntity> {
 
     @Override
     public boolean add(UserEntity object) {
-        try{
+        try {
         hibTempl.save(object);
         return true;
         } catch(Exception e){
@@ -31,17 +32,52 @@ public class UserManager extends GenericDataManager<UserEntity> {
 
     @Override
     public boolean update(UserEntity object) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+         try{
+            UserEntity user = findById(object.getId());
+            user.setActive(object.isActive());
+            user.setAddress(object.getAddress());
+            user.setCenter(object.getCenter());
+            user.setEmail(object.getEmail());
+            user.setFirstname(object.getFirstname());
+            user.setGender(object.getGender());
+//            user.setLogin(object.getLogin());
+            user.setRoleIT(object.getRoleIT());
+            user.setSurname(object.getSurname());
+            user.setPassword(object.getPassword());
+            user.setTelephoneNumber(object.getTelephoneNumber());
+            hibTempl.update(user);
+            hibTempl.flush();
+            return true;   
+        } catch (Exception e){
+             System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public boolean delete(UserEntity object) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            hibTempl.delete(object);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public UserEntity findById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+         try{
+         List<UserEntity> user = hibTempl.find("from UserEntity as user where user.id like ? ", id);
+         if(!user.isEmpty()){
+         return user.get(0);
+         } else {
+         return null;
+         }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override
@@ -59,9 +95,9 @@ public class UserManager extends GenericDataManager<UserEntity> {
         return hibTempl.loadAll(UserEntity.class);
     }
     
-    public UserEntity findByLogin(String login){
+    public UserEntity findByEmail(String email){
         try{
-        List<UserEntity> users = hibTempl.find("from UserEntity as user where user.login like ? ", login);
+        List<UserEntity> users = hibTempl.find("from UserEntity as user where user.email like ? ", email);
         if(users.isEmpty()){
             return null;
         }

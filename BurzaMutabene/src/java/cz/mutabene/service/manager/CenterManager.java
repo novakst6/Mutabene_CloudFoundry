@@ -6,7 +6,7 @@ package cz.mutabene.service.manager;
 
 import cz.mutabene.model.entity.CenterEntity;
 import java.util.Collection;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,22 +19,52 @@ public class CenterManager extends GenericDataManager<CenterEntity> {
 
     @Override
     public boolean add(CenterEntity object) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+        hibTempl.save(object);
+        return true;
+        } catch(Exception e){
+        return false;
+        }
     }
 
     @Override
     public boolean update(CenterEntity object) {
-        throw new UnsupportedOperationException("Not supported yet.");
+            try{
+            CenterEntity center = findById(object.getId());
+            center.setName(object.getName());
+            center.setDescription(object.getDescription());
+            center.setAddress(object.getAddress());
+            hibTempl.update(center);
+            hibTempl.flush();
+            return true;   
+        } catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public boolean delete(CenterEntity object) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            hibTempl.delete(object);
+            return true;
+        } catch (Exception e){
+            return false;
+        }
     }
 
     @Override
     public CenterEntity findById(Long id) {
-        return hibTempl.load(CenterEntity.class, id);
+        try{
+         List<CenterEntity> center = hibTempl.find("from CenterEntity as center where center.id like ? ", id);
+         if(!center.isEmpty()){
+         return center.get(0);
+         } else {
+         return null;
+         }
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     @Override

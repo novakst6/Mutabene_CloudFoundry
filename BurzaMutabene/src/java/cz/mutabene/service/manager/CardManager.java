@@ -17,7 +17,12 @@ public class CardManager extends GenericDataManager<CardEntity> {
 
     @Override
     public boolean add(CardEntity object) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+        hibTempl.save(object);
+        return true;
+        } catch (Exception e) {
+        return false;
+        }
     }
 
     @Override

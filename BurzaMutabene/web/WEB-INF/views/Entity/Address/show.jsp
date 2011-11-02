@@ -10,13 +10,13 @@
     <table>
         <thead>
           <tr>
-              <th>ID</th><th>NÁZEV REGIONU</th><th>NADŘAZENÝ REGION</th><th colspan="2">EDITACE</th>
+              <th>ID</th><th>ULICE</th><th>MĚSTO</th><th>PSČ</th><th>REGION</th><th colspan="2">EDITACE</th>
           </tr>
         </thead>
         <tbody>
-            <c:forEach items="${allRegions}" var="region">
+            <c:forEach items="${allAddress}" var="address">
                 <tr>
-                    <td>#${region.id}</td><td>${region.name}</td><td>${region.region.name}</td><td><a href="#">EDIT</a></td><td><a href="#">DEL</a></td>
+                    <td>#${address.id}</td><td>${address.street}</td><td>${address.city}</td><td>${address.zipCode}</td><td>${address.region.name}</td><td><a href="#">EDIT</a></td><td><a href="#">DEL</a></td>
                 </tr>
             </c:forEach>
         </tbody>

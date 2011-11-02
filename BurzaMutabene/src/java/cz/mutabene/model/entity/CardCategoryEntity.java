@@ -4,26 +4,21 @@
  */
 package cz.mutabene.model.entity;
 
-import java.io.Serializable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 /**
  *
  * @author stenlik
  */
 @Entity
-@Table(name="CARDS_CATEGORY")
-public class CardCategoryEntity implements Serializable{
-    Long id;
-    String name;
-    String description;
+public class CardCategoryEntity extends OfferObjectCategory{
+    
+    private String description;
+    private CardCategoryEntity cardCategory;
+    
 
-    @Column(name="DESCRIPTION")
     public String getDescription() {
         return description;
     }
@@ -32,23 +27,14 @@ public class CardCategoryEntity implements Serializable{
         this.description = description;
     }
 
-    @Column(name="CADR_ID")
-    @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
-    public Long getId() {
-        return id;
+    @ManyToOne @PrimaryKeyJoinColumn
+    public CardCategoryEntity getCardCategory() {
+        return cardCategory;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCardCategory(CardCategoryEntity cardCategory) {
+        this.cardCategory = cardCategory;
     }
-
-    @Column(name="NAME")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    
     
 }

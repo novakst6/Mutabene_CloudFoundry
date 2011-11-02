@@ -45,7 +45,7 @@ public class LoginFormValidator implements Validator {
     }
 
     private boolean validateUser(String login, String pass){
-            UserEntity existingUser = userManager.findByLogin(login.toLowerCase());
+            UserEntity existingUser = userManager.findByEmail(login.toLowerCase());
             if (existingUser == null) {
                 return false;
             } else {

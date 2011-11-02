@@ -52,10 +52,10 @@ public class RegistrationValidator implements Validator {
             errors.rejectValue("errors", null, "Email má nesprávný formát !");
         }
         
-        if(!isUserNameFree(model.getUser().getLogin())){
-            errors.rejectValue("user.login", null, "Toto uživatelské jméno je již použito !");
-            errors.rejectValue("errors", null, "Toto uživatelské jméno je již použito !");
-        }
+//        if(!isUserNameFree(model.getUser().getLogin())){
+//            errors.rejectValue("user.login", null, "Toto uživatelské jméno je již použito !");
+//            errors.rejectValue("errors", null, "Toto uživatelské jméno je již použito !");
+//        }
         
         if(!model.getUser().getPassword().equals(model.getConfirmPassword())){
             errors.rejectValue("user.password", null, "Zadaná hesla se neshodují !");
@@ -78,7 +78,7 @@ public class RegistrationValidator implements Validator {
     
     private boolean isUserNameFree(String login){
       
-            UserEntity user = userManager.findByLogin(login);
+            UserEntity user = userManager.findByEmail(login);
             if(user == null){
                 return true;
             } else {
